@@ -1,0 +1,18 @@
+#!name=local
+#!desc=local
+#!icon=https://github.com/Toperlock/Quantumult/raw/mai n/icon/Doraemon/Doraemon-1055.png
+[Rule]
+#移除开屏广告
+DOMAIN, m1. ad. 10010. com, REJECT
+[Rewrite]
+^https:\/\/m\.client\.10010\.com\/clientIndex\/v1\/api \/navHome response-body-json-jq
+' datas. homeTopMenuItems map(select(. menuName !
+"通通" and .menuName ！= "签到"))'
+^https:\/\/m\.client\.10010\.com\/clientIndex\/homefus ion\/fuInter response-body-json-jq 'del(.
+"HomeFusion. fuchuangAdv A8"],.
+["HomeFusion. bottomLabel"])'
+^https: \/\/m\. client\. 10010\. com\/search service\/tyfb Search\/searchDiscoverListExpress response-body-json- jq'. data = []'
+^https:\/\/m\.client\.10010\.com\/search_service\/sear ch\/ searchScrollWord response-body-json-jq'・
+["113000004"]=[]'
+[MITM]
+hostname=m.client.10010.com
